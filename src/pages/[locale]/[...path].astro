@@ -12,7 +12,7 @@ export function getStaticPaths() {
 const { locale, pageKey } = Astro.props;
 const page = localizedPages[locale][pageKey];
 const prefix = `/${locale}`;
-const robots = pageKey === 'review' ? 'noindex,nofollow' : 'index,follow';
+const robots = locale === 'pt-br' || pageKey === 'review' ? 'noindex,nofollow' : 'index,follow';
 const reviewWords = locale === 'pt-br' ? {
   home: 'Início', pets: 'Pets', author: 'Escrito por [nome do autor]', editor: 'Editado por [nome do editor]', date: 'Última revisão: [data]',
   atGlance: 'Visão geral', program: '[Nome do programa]', best: ['Melhor opção geral', 'Melhor para novos tutores', 'Melhor custo-benefício'],

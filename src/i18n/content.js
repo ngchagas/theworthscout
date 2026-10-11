@@ -1,4 +1,4 @@
-export const locales = ['en', 'es-us', 'pt-br'];
+export const locales = ['en', 'es-us'];
 
 export const shell = {
   en: {
