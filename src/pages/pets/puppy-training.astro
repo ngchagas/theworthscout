@@ -1,0 +1,188 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const reviewPrograms = [
+  {
+    label: 'Best overall',
+    name: '[Program name]',
+    summary: 'Use this space for the strongest all-around option after completing the editorial review.',
+    format: '[Live, recorded, or hybrid]',
+    price: '[Verify current price]',
+  },
+  {
+    label: 'Best for new owners',
+    name: '[Program name]',
+    summary: 'Explain why the teaching style, lesson order, and support work well for first-time puppy owners.',
+    format: '[Live, recorded, or hybrid]',
+    price: '[Verify current price]',
+  },
+  {
+    label: 'Best budget option',
+    name: '[Program name]',
+    summary: 'Describe the value offered and identify which features or support options are not included.',
+    format: '[Live, recorded, or hybrid]',
+    price: '[Verify current price]',
+  },
+];
+---
+
+<Base
+  title="Puppy Training Program Reviews & Buying Guide | TheWorthScout"
+  description="A transparent review and buying-guide template for comparing online puppy training programs in the United States."
+  robots="noindex,nofollow"
+>
+  <article class="review-page">
+    <div class="wrap review-hero">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><a href="/pets/">Pets</a><span aria-hidden="true">/</span><span>Puppy Training</span>
+      </nav>
+      <div class="eyebrow">Puppy training guide</div>
+      <h1>Best Puppy Training Programs: What to Compare Before You Buy</h1>
+      <p class="review-lead">A practical framework for comparing training programs by teaching approach, instructor access, lesson structure, value, and fit for your puppy.</p>
+      <div class="article-meta">
+        <span>Written by [Author name]</span>
+        <span>Edited by [Editor name]</span>
+        <span>Last reviewed: [Month Day, Year]</span>
+      </div>
+      <aside class="commerce-disclosure" aria-label="Commercial disclosure">
+        <strong>Commercial disclosure:</strong> Some placements may be sponsored and some links may earn us a commission. Payment does not guarantee a positive recommendation. Sponsored content and affiliate links must be labeled clearly before publication.
+      </aside>
+    </div>
+
+    <div class="wrap article-layout">
+      <aside class="contents" aria-label="Article contents">
+        <strong>In this guide</strong>
+        <a href="#quick-picks">Quick picks</a>
+        <a href="#comparison">Comparison</a>
+        <a href="#reviews">Full reviews</a>
+        <a href="#methodology">How we evaluate</a>
+        <a href="#buying-guide">Buying guide</a>
+        <a href="#faq">FAQ</a>
+      </aside>
+
+      <div class="article-body">
+        <section id="quick-picks" class="article-section">
+          <div class="section-heading">
+            <div class="eyebrow">At a glance</div>
+            <h2>Quick picks</h2>
+            <p>Replace every bracketed field only after the program has been researched and the underlying claim can be supported.</p>
+          </div>
+          <div class="pick-grid">
+            {reviewPrograms.map((program) => (
+              <section class="pick-card">
+                <div class="pick-label">{program.label}</div>
+                <h3>{program.name}</h3>
+                <p>{program.summary}</p>
+                <dl>
+                  <div><dt>Format</dt><dd>{program.format}</dd></div>
+                  <div><dt>Price</dt><dd>{program.price}</dd></div>
+                </dl>
+                <span class="review-cta" aria-disabled="true">Affiliate link pending</span>
+              </section>
+            ))}
+          </div>
+        </section>
+
+        <section id="comparison" class="article-section">
+          <div class="section-heading">
+            <div class="eyebrow">Side by side</div>
+            <h2>Program comparison</h2>
+          </div>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Puppy training program comparison">
+            <table>
+              <thead><tr><th>Program</th><th>Best for</th><th>Format</th><th>Support</th><th>Price checked</th></tr></thead>
+              <tbody>
+                <tr><th>[Program 1]</th><td>[Use case]</td><td>[Format]</td><td>[Support level]</td><td>[Date and price]</td></tr>
+                <tr><th>[Program 2]</th><td>[Use case]</td><td>[Format]</td><td>[Support level]</td><td>[Date and price]</td></tr>
+                <tr><th>[Program 3]</th><td>[Use case]</td><td>[Format]</td><td>[Support level]</td><td>[Date and price]</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="reviews" class="article-section">
+          <div class="section-heading">
+            <div class="eyebrow">Detailed assessment</div>
+            <h2>Full review template</h2>
+          </div>
+          <section class="full-review">
+            <div class="review-title-row">
+              <div><div class="pick-label">[Award or intended audience]</div><h3>[Program name]</h3></div>
+              <div class="rating-placeholder">Score: [—/10]</div>
+            </div>
+            <p class="review-summary">Open with a concise verdict explaining who the program is for, what distinguishes it, and its most important limitation. Do not claim firsthand testing unless it actually occurred.</p>
+            <div class="pros-cons">
+              <div><h4>What we like</h4><ul><li>[Specific, supported advantage]</li><li>[Specific, supported advantage]</li><li>[Specific, supported advantage]</li></ul></div>
+              <div><h4>What to consider</h4><ul><li>[Material limitation]</li><li>[Material limitation]</li><li>[Who should choose another option]</li></ul></div>
+            </div>
+            <h4>What the program covers</h4>
+            <p>[Summarize the curriculum, lesson sequence, access period, instructor credentials, community features, and support channels. Verify details directly with the provider.]</p>
+            <h4>Our assessment</h4>
+            <p>[Explain the evidence reviewed, how the program performed against the criteria below, and why the conclusion follows. Separate verified facts from editorial judgment.]</p>
+            <div class="verdict"><strong>Bottom line:</strong> [One-sentence recommendation with the ideal buyer and the primary trade-off.]</div>
+            <span class="review-cta" aria-disabled="true">Check price — link pending</span>
+            <small class="link-note">Add “Sponsored” or “Affiliate link” beside the button whenever applicable.</small>
+          </section>
+        </section>
+
+        <section id="methodology" class="article-section methodology">
+          <div class="section-heading">
+            <div class="eyebrow">Our standards</div>
+            <h2>How we evaluate puppy training programs</h2>
+            <p>Publish the weighting and evidence used for every score. Adjust the percentages before publication if the editorial method changes.</p>
+          </div>
+          <div class="criteria-grid">
+            <div><strong>25%</strong><h3>Training approach</h3><p>Clarity, consistency, welfare considerations, and how the program explains its methods.</p></div>
+            <div><strong>20%</strong><h3>Curriculum</h3><p>Coverage of foundational skills, problem prevention, lesson order, and realistic expectations.</p></div>
+            <div><strong>20%</strong><h3>Instruction & support</h3><p>Instructor qualifications, feedback options, live help, and accessibility of explanations.</p></div>
+            <div><strong>15%</strong><h3>Ease of use</h3><p>Navigation, lesson length, device support, captions, and progress tracking.</p></div>
+            <div><strong>10%</strong><h3>Value</h3><p>Current price relative to content, support, access duration, and comparable alternatives.</p></div>
+            <div><strong>10%</strong><h3>Policies</h3><p>Trial terms, cancellation process, refunds, recurring charges, and privacy information.</p></div>
+          </div>
+          <div class="evidence-note"><strong>Evidence reviewed:</strong> [Course access / provider documentation / instructor interview / customer support test / published policies]. Remove any source that was not actually used.</div>
+        </section>
+
+        <section id="buying-guide" class="article-section guide-copy">
+          <div class="eyebrow">Before you enroll</div>
+          <h2>How to choose a puppy training program</h2>
+          <h3>Start with the behavior you want to address</h3>
+          <p>General puppy courses usually focus on household routines and foundational skills. Owners dealing with fear, aggression, or other safety concerns should look for qualified, individualized professional support rather than relying only on a general online course.</p>
+          <h3>Choose a format you can follow consistently</h3>
+          <p>Recorded lessons offer flexibility, while live classes can provide feedback and accountability. A hybrid format may suit owners who want both. The best format is one that fits the household’s schedule and makes practice manageable.</p>
+          <h3>Read the payment and refund terms</h3>
+          <p>Confirm whether access is a one-time purchase or a subscription, how long course materials remain available, and whether live support costs extra. Record the date when price and policy details were checked.</p>
+          <h3>Watch for unsupported promises</h3>
+          <p>Avoid presenting guaranteed timelines, universal results, or dramatic behavior claims as fact. Outcomes vary with the puppy, environment, owner participation, and the complexity of the behavior.</p>
+        </section>
+
+        <section id="faq" class="article-section faq">
+          <div class="eyebrow">Common questions</div>
+          <h2>Puppy training FAQ</h2>
+          <details><summary>When should puppy training begin?</summary><p>[Add a sourced, veterinarian- or credentialed-trainer-reviewed answer appropriate for a U.S. audience.]</p></details>
+          <details><summary>Are online puppy training programs worth it?</summary><p>[Explain when online instruction can be useful, its limitations, and when in-person help is more appropriate.]</p></details>
+          <details><summary>How much does puppy training cost?</summary><p>[Insert a current, sourced U.S. price range and state when the information was checked.]</p></details>
+          <details><summary>What credentials should a trainer have?</summary><p>[Describe the credentials evaluated and link to the issuing organizations. Avoid implying that one credential alone guarantees quality.]</p></details>
+        </section>
+
+        <aside class="editor-checklist">
+          <h2>Before publishing this review</h2>
+          <ul>
+            <li>Replace all bracketed placeholders and remove this checklist.</li>
+            <li>Verify pricing, renewal, cancellation, and refund terms.</li>
+            <li>Support every performance claim with documented evidence.</li>
+            <li>Label sponsored placements and affiliate links prominently.</li>
+            <li>Disclose whether access was purchased, provided, or not obtained.</li>
+            <li>Have safety-sensitive guidance reviewed by an appropriate expert.</li>
+            <li>Never publish fabricated testing, testimonials, or ratings.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .review-page{background:#fbfaf6}.review-hero{padding-top:58px;padding-bottom:52px}.breadcrumbs{display:flex;gap:9px;align-items:center;margin-bottom:42px;color:#6d7873;font-size:13px}.breadcrumbs a{text-decoration:underline;text-underline-offset:3px}.review-hero h1{max-width:900px;font-size:clamp(42px,6vw,68px);margin-bottom:20px}.review-lead{max-width:760px;font-size:20px;margin-bottom:26px}.article-meta{display:flex;flex-wrap:wrap;gap:10px 24px;color:#68736e;font-size:13px}.commerce-disclosure{max-width:900px;margin-top:30px;padding:18px 20px;border:1px solid #d8d7cd;background:#f2f1ea;color:#3e4c47;font-size:14px;line-height:1.6}.article-layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:62px;align-items:start;padding-bottom:90px}.contents{position:sticky;top:110px;display:flex;flex-direction:column;gap:12px;padding:20px 0;border-top:2px solid #1e4035;border-bottom:1px solid #dcded8;font-size:14px}.contents strong{margin-bottom:4px}.contents a{color:#5a6863}.article-body{min-width:0}.article-section{padding:64px 0;border-top:1px solid #dedfd9;scroll-margin-top:105px}.article-section:first-child{border-top:0;padding-top:0}.section-heading{max-width:720px;margin-bottom:28px}.section-heading h2,.guide-copy h2,.faq h2{margin:8px 0 14px}.pick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.pick-card{display:flex;flex-direction:column;border:1px solid #dedfd9;background:#fff;padding:24px}.pick-label{color:#9a6e41;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}.pick-card h3{font-size:25px;margin:10px 0}.pick-card p{font-size:14px;line-height:1.6}.pick-card dl{margin-top:auto}.pick-card dl div{display:grid;grid-template-columns:58px 1fr;gap:8px;padding:7px 0;border-top:1px solid #ecece7;font-size:12px}.pick-card dt{font-weight:700}.pick-card dd{margin:0}.review-cta{display:inline-block;align-self:flex-start;margin-top:17px;padding:12px 15px;border-radius:3px;background:#1e4035;color:#fff;font-size:12px;font-weight:700}.table-scroll{max-width:100%;overflow-x:auto;border:1px solid #dedfd9;background:#fff}.table-scroll:focus{outline:2px solid #b07b43;outline-offset:2px}table{width:100%;min-width:690px;border-collapse:collapse;text-align:left;font-size:13px}th,td{padding:16px;border-bottom:1px solid #e6e7e2;vertical-align:top}thead th{background:#f2f1ea;color:#364640;font-size:11px;letter-spacing:.7px;text-transform:uppercase}tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}.full-review{border:1px solid #d9dbd5;background:#fff;padding:32px}.review-title-row{display:flex;justify-content:space-between;gap:24px;align-items:start}.review-title-row h3{font-size:33px;margin:8px 0}.rating-placeholder{padding:10px 12px;background:#f2f1ea;font-size:13px;font-weight:700}.review-summary{font-size:17px}.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:26px 0}.pros-cons>div{padding:20px;background:#f7f6f1}.pros-cons h4{margin:0 0 12px}.pros-cons ul{margin:0;padding-left:20px;color:#52625c;line-height:1.7}.full-review>h4{margin:28px 0 4px}.verdict{margin:24px 0 0;padding:18px;border-left:3px solid #b07b43;background:#f2f1ea;line-height:1.6}.link-note{display:block;margin-top:10px;color:#707a76}.criteria-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.criteria-grid>div{padding:23px;border:1px solid #dedfd9;background:#fff}.criteria-grid strong{color:#9a6e41;font-family:'Playfair Display',serif;font-size:24px}.criteria-grid h3{font-size:20px;margin:7px 0}.criteria-grid p{margin:0;font-size:14px;line-height:1.6}.evidence-note{margin-top:18px;padding:18px;background:#f2f1ea;font-size:14px;line-height:1.6}.guide-copy h3{font-size:24px;margin:34px 0 4px}.faq details{border-top:1px solid #d9dbd5;padding:18px 0}.faq details:last-child{border-bottom:1px solid #d9dbd5}.faq summary{cursor:pointer;font-weight:700}.faq details p{margin-bottom:0}.editor-checklist{margin-top:10px;padding:28px;border:2px dashed #b07b43;background:#fff9ed}.editor-checklist h2{font-size:27px;margin-top:0}.editor-checklist ul{margin-bottom:0;padding-left:20px;color:#52625c;line-height:1.8}
+  @media(max-width:900px){.article-layout{grid-template-columns:1fr;gap:28px}.contents{position:static;display:grid;grid-template-columns:repeat(3,1fr);gap:10px 16px}.contents strong{grid-column:1/-1}.pick-grid{grid-template-columns:1fr}.pick-card{min-height:0}}
+  @media(max-width:620px){.review-hero{padding-top:36px}.breadcrumbs{margin-bottom:30px;flex-wrap:wrap}.article-meta{flex-direction:column;gap:7px}.contents{grid-template-columns:repeat(2,1fr)}.article-section{padding:48px 0}.full-review{padding:22px}.review-title-row{flex-direction:column}.pros-cons,.criteria-grid{grid-template-columns:1fr}}
+</style>
