@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import { localizedPages, localizedRoutes } from '../../i18n/content.js';
+
+export function getStaticPaths() {
+  return ['es-us', 'pt-br'].flatMap((locale) => localizedRoutes.map(({ path, key }) => ({
+    params: { locale, path },
+    props: { locale, pageKey: key },
+  })));
+}
+
+const { locale, pageKey } = Astro.props;
+const page = localizedPages[locale][pageKey];
+const prefix = `/${locale}`;
+const robots = pageKey === 'review' ? 'noindex,nofollow' : 'index,follow';
+const reviewWords = locale === 'pt-br' ? {
+  home: 'Início', pets: 'Pets', author: 'Escrito por [nome do autor]', editor: 'Editado por [nome do editor]', date: 'Última revisão: [data]',
+  atGlance: 'Visão geral', program: '[Nome do programa]', best: ['Melhor opção geral', 'Melhor para novos tutores', 'Melhor custo-benefício'],
+  format: 'Formato', price: 'Preço', pending: 'Link de afiliado pendente', useCase: 'Indicado para', support: 'Suporte', checked: 'Preço verificado',
+  reviewIntro: 'Explique para quem o programa é indicado, o que o diferencia e qual é sua limitação mais importante. Não afirme ter realizado testes diretos se isso não aconteceu.',
+  likes: 'Pontos positivos', consider: 'O que considerar', advantage: '[Vantagem específica e comprovada]', limitation: '[Limitação relevante]',
+  bottom: 'Conclusão:', bottomText: '[Recomendação em uma frase, indicando o comprador ideal e a principal ressalva.]',
+  guideText: ['Comece pelo comportamento que deseja trabalhar. Cursos gerais normalmente abordam rotinas e habilidades básicas; questões de segurança exigem suporte profissional individualizado.', 'Escolha um formato que você consiga seguir com consistência. Aulas gravadas oferecem flexibilidade; aulas ao vivo oferecem acompanhamento.', 'Confirme se o pagamento é único ou recorrente, por quanto tempo o conteúdo ficará disponível e quais são as regras de reembolso.'],
+  faqItems: [['Quando começar o treinamento?', '[Adicione uma resposta revisada por profissional qualificado.]'], ['Cursos online valem a pena?', '[Explique benefícios, limitações e quando buscar ajuda presencial.]'], ['Quanto custa?', '[Inclua valores atuais nos EUA e a data da consulta.]']],
+} : {
+  home: 'Inicio', pets: 'Mascotas', author: 'Escrito por [nombre del autor]', editor: 'Editado por [nombre del editor]', date: 'Última revisión: [fecha]',
+  atGlance: 'En resumen', program: '[Nombre del programa]', best: ['Mejor opción general', 'Mejor para nuevos dueños', 'Mejor relación calidad-precio'],
+  format: 'Formato', price: 'Precio', pending: 'Enlace de afiliado pendiente', useCase: 'Ideal para', support: 'Soporte', checked: 'Precio verificado',
+  reviewIntro: 'Explica para quién es el programa, qué lo diferencia y cuál es su limitación más importante. No afirmes haber realizado pruebas directas si eso no ocurrió.',
+  likes: 'Lo que nos gusta', consider: 'Qué considerar', advantage: '[Ventaja específica y comprobada]', limitation: '[Limitación relevante]',
+  bottom: 'Conclusión:', bottomText: '[Recomendación en una frase con el comprador ideal y la principal limitación.]',
+  guideText: ['Comienza por el comportamiento que quieres trabajar. Los cursos generales suelen cubrir rutinas y habilidades básicas; los problemas de seguridad requieren apoyo profesional individualizado.', 'Elige un formato que puedas seguir con constancia. Las lecciones grabadas ofrecen flexibilidad y las clases en vivo ofrecen seguimiento.', 'Confirma si el pago es único o recurrente, cuánto tiempo tendrás acceso y cuáles son las condiciones de reembolso.'],
+  faqItems: [['¿Cuándo comenzar el entrenamiento?', '[Añade una respuesta revisada por un profesional cualificado.]'], ['¿Valen la pena los cursos en línea?', '[Explica beneficios, limitaciones y cuándo buscar ayuda presencial.]'], ['¿Cuánto cuesta?', '[Incluye precios actuales en Estados Unidos y la fecha de consulta.]']],
+};
+---
+
+<Base title={page.title} description={page.description} robots={robots} locale={locale}>
+  {pageKey === 'home' && (
+    <>
+      <section class="hero"><div class="wrap hero-inner"><div class="eyebrow">{page.eyebrow}</div><h1>{page.headline.split('\n')[0]}<br/>{page.headline.split('\n')[1]}</h1><p class="lead">{page.lead}</p><a class="button" href={`${prefix}/pets/`}>{page.cta}</a></div></section>
+      <section class="section"><div class="wrap"><div class="eyebrow">{page.coverage}</div><h2>{page.picks}</h2><div class="grid">{page.cards.map((card) => card.href ? <a class="card" href={card.href}><div class="symbol">{card.symbol}</div><h3>{card.title}</h3><p>{card.text}</p><strong>{card.link}</strong></a> : <div class="card"><div class="symbol">{card.symbol}</div><h3>{card.title}</h3><p>{card.text}</p></div>)}</div></div></section>
+      <section class="section muted"><div class="wrap"><div class="eyebrow">{page.approach}</div><h2>{page.approachTitle}</h2><p>{page.approachText}</p><a href={`${prefix}/editorial-policy/`}>{page.standardsLink}</a></div></section>
+    </>
+  )}
+
+  {pageKey === 'about' && <article class="wrap prose"><div class="eyebrow">{page.eyebrow}</div><h1>{page.heading}</h1>{page.paragraphs.map((text) => <p>{text}</p>)}</article>}
+
+  {pageKey === 'affiliate' && <article class="wrap prose"><div class="eyebrow">{page.eyebrow}</div><h1>{page.heading}</h1>{page.paragraphs.map((text) => <p>{text}</p>)}</article>}
+
+  {pageKey === 'contact' && <article class="wrap prose"><div class="eyebrow">{page.eyebrow}</div><h1>{page.heading}</h1><p>{page.intro}</p><div class="notice">{page.notice}</div></article>}
+
+  {pageKey === 'editorial' && <article class="wrap prose"><div class="eyebrow">{page.eyebrow}</div><h1>{page.heading}</h1>{page.sections.map(([heading, text]) => <><h2>{heading}</h2><p>{text}</p></>)}</article>}
+
+  {pageKey === 'privacy' && <article class="wrap prose"><div class="eyebrow">{page.eyebrow}</div><h1>{page.heading}</h1><p>{page.updated}</p><div class="notice"><strong>{page.notice}</strong></div>{page.sections.map(([heading, text]) => <><h2>{heading}</h2><p>{text}</p></>)}</article>}
+
+  {pageKey === 'pets' && (
+    <><section class="hero"><div class="wrap hero-inner"><div class="eyebrow">{page.eyebrow}</div><h1>{page.heading}</h1><p class="lead">{page.lead}</p></div></section><section class="section"><div class="wrap"><h2>{page.research}</h2><div class="grid">{page.cards.map((card) => card.href ? <a class="card" href={card.href}><div class="symbol">{card.symbol}</div><h3>{card.title}</h3><p>{card.text}</p><strong>{card.link}</strong></a> : <div class="card"><div class="symbol">{card.symbol}</div><h3>{card.title}</h3><p>{card.text}</p></div>)}</div></div></section></>
+  )}
+
+  {pageKey === 'review' && (
+    <article class="localized-review">
+      <div class="wrap localized-review-hero">
+        <nav class="review-breadcrumb" aria-label="Breadcrumb"><a href={`${prefix}/`}>{reviewWords.home}</a><span>/</span><a href={`${prefix}/pets/`}>{reviewWords.pets}</a><span>/</span><span>{page.breadcrumb}</span></nav>
+        <div class="eyebrow">{page.eyebrow}</div><h1>{page.heading}</h1><p class="lead">{page.lead}</p>
+        <div class="review-meta"><span>{reviewWords.author}</span><span>{reviewWords.editor}</span><span>{reviewWords.date}</span></div>
+        <aside class="review-disclosure"><strong>{page.disclosure}</strong> {page.disclosureText}</aside>
+      </div>
+      <div class="wrap localized-review-body">
+        <section><div class="eyebrow">{reviewWords.atGlance}</div><h2>{page.quick}</h2><p>{page.placeholder}</p><div class="localized-picks">{reviewWords.best.map((label) => <div class="localized-pick"><small>{label}</small><h3>{reviewWords.program}</h3><p>{reviewWords.reviewIntro}</p><dl><div><dt>{reviewWords.format}</dt><dd>[—]</dd></div><div><dt>{reviewWords.price}</dt><dd>[—]</dd></div></dl><span class="review-button">{reviewWords.pending}</span></div>)}</div></section>
+        <section><h2>{page.comparison}</h2><div class="localized-table"><table><thead><tr><th>{reviewWords.program}</th><th>{reviewWords.useCase}</th><th>{reviewWords.format}</th><th>{reviewWords.support}</th><th>{reviewWords.checked}</th></tr></thead><tbody>{[1,2,3].map((item) => <tr><th>{reviewWords.program} {item}</th><td>[—]</td><td>[—]</td><td>[—]</td><td>[—]</td></tr>)}</tbody></table></div></section>
+        <section><h2>{page.reviews}</h2><div class="localized-full-review"><h3>{reviewWords.program}</h3><p>{reviewWords.reviewIntro}</p><div class="localized-pros"><div><h4>{reviewWords.likes}</h4><ul><li>{reviewWords.advantage}</li><li>{reviewWords.advantage}</li></ul></div><div><h4>{reviewWords.consider}</h4><ul><li>{reviewWords.limitation}</li><li>{reviewWords.limitation}</li></ul></div></div><div class="localized-verdict"><strong>{reviewWords.bottom}</strong> {reviewWords.bottomText}</div></div></section>
+        <section><h2>{page.methodology}</h2><div class="localized-criteria">{page.criteria.map(([weight, label]) => <div><strong>{weight}</strong><h3>{label}</h3></div>)}</div></section>
+        <section><h2>{page.guide}</h2>{reviewWords.guideText.map((text) => <p>{text}</p>)}</section>
+        <section><h2>{page.faq}</h2>{reviewWords.faqItems.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</section>
+        <aside class="localized-checklist"><h2>{page.checklist}</h2><ul>{page.checklistItems.map((item) => <li>{item}</li>)}</ul></aside>
+      </div>
+    </article>
+  )}
+</Base>
+
+<style>
+  .localized-review-hero{padding-top:56px;padding-bottom:50px}.review-breadcrumb{display:flex;gap:9px;margin-bottom:38px;color:#68736e;font-size:13px}.localized-review-hero h1{max-width:900px}.review-meta{display:flex;flex-wrap:wrap;gap:10px 24px;color:#68736e;font-size:13px}.review-disclosure{max-width:900px;margin-top:28px;padding:18px 20px;border:1px solid #d8d7cd;background:#f2f1ea;line-height:1.6}.localized-review-body{padding-bottom:90px}.localized-review-body>section{padding:58px 0;border-top:1px solid #dedfd9}.localized-picks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.localized-pick,.localized-full-review,.localized-criteria>div{border:1px solid #dedfd9;background:#fff;padding:24px}.localized-pick{display:flex;flex-direction:column}.localized-pick small{color:#9a6e41;font-weight:700;letter-spacing:1px;text-transform:uppercase}.localized-pick dl{margin-top:auto}.localized-pick dl div{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-top:1px solid #ecece7;font-size:12px}.localized-pick dd{margin:0}.review-button{align-self:flex-start;margin-top:15px;padding:11px 14px;border-radius:3px;background:#1e4035;color:white;font-size:12px;font-weight:700}.localized-table{overflow-x:auto;border:1px solid #dedfd9}.localized-table table{width:100%;min-width:680px;border-collapse:collapse;background:white;text-align:left}.localized-table th,.localized-table td{padding:15px;border-bottom:1px solid #e6e7e2}.localized-pros{display:grid;grid-template-columns:1fr 1fr;gap:18px}.localized-pros>div{padding:18px;background:#f7f6f1}.localized-verdict{margin-top:22px;padding:18px;border-left:3px solid #b07b43;background:#f2f1ea}.localized-criteria{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.localized-criteria strong{color:#9a6e41;font-family:'Playfair Display',serif;font-size:24px}.localized-checklist{margin:40px 0;padding:28px;border:2px dashed #b07b43;background:#fff9ed}.localized-review details{padding:17px 0;border-top:1px solid #d9dbd5}.localized-review summary{cursor:pointer;font-weight:700}@media(max-width:800px){.localized-picks,.localized-criteria{grid-template-columns:1fr 1fr}}@media(max-width:620px){.localized-picks,.localized-criteria,.localized-pros{grid-template-columns:1fr}}
+</style>
