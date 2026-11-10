@@ -92,6 +92,7 @@ The `www` redirect is implemented with a Cloudflare Redirect Rule. DNS records m
 - Update `public/sitemap.xml` when additional pages become indexable.
 - Configure analytics, conversion measurement, and search tools only after updating the privacy disclosures.
 - Review affiliate-program rules for brand usage, paid search, claims, and comparison content.
+- Review TheWorthScout brand and trademark clearance before investing in paid promotion.
 
 ## Expansion guidance
 
